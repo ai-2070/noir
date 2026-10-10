@@ -1,0 +1,16 @@
+bun.lock
+  h_64425bc75e3f3d 8,12,166-167,858-859
+package.json
+  h_64425bc75e3f3d 12,15-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "623b59d682b086bafee7cf6aa1f4da5d70d84728",
+  "prompts": {},
+  "humans": {
+    "h_64425bc75e3f3d": {
+      "author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
