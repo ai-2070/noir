@@ -9,9 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@net-mesh/browser": "0.42.0",
     "next": "16.4.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "three": "0.186.1"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "4.3.3",
