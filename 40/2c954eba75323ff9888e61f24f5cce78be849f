@@ -1,0 +1,74 @@
+src/game/Game.tsx
+  s_d8429efc9b76c8::t_9f6ac746d590ae 1-89
+src/game/story.ts
+  s_d8429efc9b76c8::t_e3e74b70288b2c 3,7-10
+  s_d8429efc9b76c8::t_05c8d6d2916677 1-2,4-6,11-154
+src/app/GameShell.tsx
+  s_d8429efc9b76c8::t_3c3b2a3d535f94 1-13
+src/game/store.ts
+  s_d8429efc9b76c8::t_9f86c294c52e5b 1-107
+src/game/input.ts
+  s_d8429efc9b76c8::t_25f575789531ab 1-12
+src/game/components/Actors.tsx
+  s_d8429efc9b76c8::t_ad4f6e96c5f938 94-98
+  s_d8429efc9b76c8::t_dde67a8a5ef70a 1-93,99-152,154-477
+  s_d8429efc9b76c8::t_05f4ab9d318acd 153
+src/game/pixelFont.ts
+  s_d8429efc9b76c8::t_903e19cf0980b4 1-77
+src/game/components/PixelRenderer.tsx
+  s_d8429efc9b76c8::t_83df0e2fff1f95 1-119,121-258,260-313
+  s_d8429efc9b76c8::t_9549e2d9c14f64 120
+  s_d8429efc9b76c8::t_180cba58250c52 259
+src/game/materials.ts
+  s_d8429efc9b76c8::t_ab2e7963415470 1-63
+src/game/rig.ts
+  s_d8429efc9b76c8::t_584210b034e5b3 1-25,28-60
+  s_d8429efc9b76c8::t_ad4f6e96c5f938 26-27
+src/game/palette.ts
+  s_d8429efc9b76c8::t_584210b034e5b3 1-164
+src/game/textures.ts
+  s_d8429efc9b76c8::t_8b449bb93fb14a 1-671
+src/game/props.ts
+  s_d8429efc9b76c8::t_3173bbed4bee3d 1-535,537-542
+  s_d8429efc9b76c8::t_94fb350f5663c3 536
+src/game/level.ts
+  s_d8429efc9b76c8::t_ad4f6e96c5f938 1-27,30-87,90-413,415-526
+  s_d8429efc9b76c8::t_05f4ab9d318acd 28-29,88-89,414
+src/game/components/Overlay.tsx
+  s_d8429efc9b76c8::t_e4497ee4adca15 1-195
+src/app/globals.css
+  s_d8429efc9b76c8::t_8afb7f90f66b1c 4-110,113-118,121-170,174-370
+src/app/layout.tsx
+  s_d8429efc9b76c8::t_2b64532369a0dd 2,5-7,11-13,18-19,24-25
+README.md
+  s_d8429efc9b76c8::t_050c212ac64535 1,3-6,9-10,13,15-20,22,24,26,28-38,40-44,46,48-58
+src/game/components/World.tsx
+  s_d8429efc9b76c8::t_dde67a8a5ef70a 241,283
+  s_d8429efc9b76c8::t_f81fa4ef26f87d 3,242
+  s_d8429efc9b76c8::t_0641dbc6dd9c0b 1-2,4-15,17,19-33,68-70,73-82,84-92,94-240,243-282,284-286
+  s_d8429efc9b76c8::t_18498571653d76 18,34-35,39-41,43-45,47-50
+  s_d8429efc9b76c8::t_05b65cd242a9bb 36-38,42,46
+  s_d8429efc9b76c8::t_9549e2d9c14f64 16
+  s_d8429efc9b76c8::t_56d7bcf418749b 51-60,62-67,71-72,83,93
+  s_d8429efc9b76c8::t_ad4f6e96c5f938 61
+src/app/page.tsx
+  s_d8429efc9b76c8::t_e7454c2c74bdd1 1,5-7
+src/game/kit.ts
+  s_d8429efc9b76c8::t_e8658415ecc8ab 1-174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "402c954eba75323ff9888e61f24f5cce78be849f",
+  "prompts": {},
+  "sessions": {
+    "s_d8429efc9b76c8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf0f37f5-baec-43a3-8f24-af36f71d7509",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
