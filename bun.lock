@@ -5,7 +5,7 @@
     "": {
       "name": "noir",
       "dependencies": {
-        "@net-mesh/browser": "0.42.0",
+        "@net-mesh/browser": "0.43.0",
         "@radix-ui/react-accessible-icon": "1.2.0",
         "@radix-ui/react-accordion": "1.3.0",
         "@radix-ui/react-alert-dialog": "1.2.0",
@@ -237,7 +237,7 @@
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.2.5", "", { "dependencies": { "@tybys/wasm-util": "^0.10.3" }, "peerDependencies": { "@emnapi/core": "^1.7.1 || ^2.0.0-alpha.4", "@emnapi/runtime": "^1.7.1 || ^2.0.0-alpha.4" } }, "sha512-HshSvXzmBxNzqejd3k/KemgQ3hdREUYFRRrgxOZ+gPljDIsO2SDZrVZMd4Z/HsxudQbE62OVyVFE8z9BCurfjA=="],
 
-    "@net-mesh/browser": ["@net-mesh/browser@0.42.0", "", {}, "sha512-Y/iRhXanWhdNVLMSViQMDhdNeZIq/RZnltPxH7iN60/PMR1QsZjcyOm6PqrcfKbp6deS5qfV4d63WF8bmo976Q=="],
+    "@net-mesh/browser": ["@net-mesh/browser@0.43.0", "", {}, "sha512-7F06B2xBKBoTabECTjww4bRL+tXPaeUkj3mDJ368bcDrVbouRaXNfX9Dp48u4MoCyBfIdp8qqbCU4xnvDS3Gzg=="],
 
     "@next/env": ["@next/env@16.4.0", "", {}, "sha512-pyLlT5oafGlX8X7xjgGNXz5dNIDSxREm+qD6i9VLSZiZFopA/XWl8NM/KPmLx/8EG/++c49iid3gNWSQW1+2dQ=="],
 
