@@ -1,26 +1,371 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* One art pixel in CSS px; the renderer rewrites this on resize. */
+  --px: 2px;
+
+  --ink-0: #0a080d;
+  --ink-1: #131019;
+  --ink-2: #1c1724;
+  --ink-3: #272031;
+  --ink-5: #4a3a52;
+  --paper: #ece4d4;
+  --paper-dim: #ada197;
+  --brass: #bd9742;
+  --brass-lt: #e6c66a;
+  --oxblood: #922c2a;
+  --oxblood-dk: #47161b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  background: var(--ink-1);
+  color: var(--paper);
+  overscroll-behavior: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.game-root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  user-select: none;
+  font-family: var(--font-body), ui-monospace, monospace;
+}
+
+.game-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+.game-loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display), monospace;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  background: var(--ink-1);
+}
+
+/* Pixel frame: hard outer ink line, violet rule, inner shadow line. */
+.pixel-frame,
+.hud-card,
+.dialogue,
+.prompt-inner {
+  background: color-mix(in srgb, var(--ink-1) 92%, transparent);
+  border: var(--px) solid var(--ink-5);
+  box-shadow:
+    0 0 0 var(--px) var(--ink-0),
+    inset 0 0 0 var(--px) var(--ink-2),
+    calc(var(--px) * 2) calc(var(--px) * 2) 0 var(--px) rgb(10 8 13 / 0.6);
+}
+
+kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4em;
+  padding: 0 0.3em;
+  margin-right: 0.35em;
+  font-family: var(--font-display), monospace;
+  font-size: 0.62em;
+  line-height: 1.6;
+  color: var(--ink-1);
+  background: var(--paper-dim);
+  box-shadow:
+    inset 0 calc(var(--px) * -1) 0 #6f6562,
+    0 0 0 var(--px) var(--ink-0);
+}
+
+/* ---------- case card ---------- */
+
+.hud-card {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 16px 12px 14px;
+  min-width: 260px;
+  max-width: 340px;
+}
+
+.hud-kicker {
+  font-family: var(--font-display), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+}
+
+.hud-title {
+  font-family: var(--font-display), monospace;
+  font-size: 16px;
+  color: var(--brass-lt);
+  margin: 2px 0 8px;
+}
+
+.hud-card ul {
+  display: grid;
+  gap: 4px;
+}
+
+.hud-card li {
+  display: flex;
+  gap: 8px;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--paper-dim);
+}
+
+.hud-card li .box {
+  color: var(--ink-5);
+  width: 0.8em;
+  flex: none;
+}
+
+.hud-card li.found {
+  color: var(--paper);
+}
+
+.hud-card li.found .box {
+  color: var(--oxblood);
+}
+
+.hud-card li em {
+  display: block;
+  font-style: normal;
+  color: var(--brass);
+  font-size: 17px;
+  margin-top: 1px;
+}
+
+.hud-card .unknown {
+  color: #544c4c;
+}
+
+/* ---------- prompt ---------- */
+
+.prompt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.prompt-inner {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 10px));
+  white-space: nowrap;
+  padding: 3px 10px 3px 6px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--paper);
+  animation: bob 1.6s steps(2, jump-none) infinite;
+}
+
+@keyframes bob {
+  50% {
+    translate: 0 calc(var(--px) * -1);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------- toast ---------- */
+
+.toast {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  translate: -50% 0;
+  padding: 6px 14px;
+  font-family: var(--font-display), monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--oxblood-dk);
+  box-shadow:
+    0 0 0 var(--px) var(--ink-0),
+    inset 0 0 0 var(--px) var(--oxblood);
+  animation: toast 3.2s steps(12) forwards;
+}
+
+@keyframes toast {
+  0% {
+    opacity: 0;
+    translate: -50% -8px;
+  }
+  8%,
+  80% {
+    opacity: 1;
+    translate: -50% 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- dialogue ---------- */
+
+.dialogue {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  translate: -50% 0;
+  width: min(780px, calc(100vw - 40px));
+  padding: 18px 26px 20px;
+}
+
+.dialogue .speaker {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  padding: 3px 10px;
+  font-family: var(--font-display), monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  background: var(--oxblood);
+  box-shadow: 0 0 0 var(--px) var(--ink-0);
+}
+
+.dialogue p {
+  font-size: 27px;
+  line-height: 1.12;
+  color: var(--paper);
+  text-wrap: pretty;
+}
+
+.dialogue p.narration {
+  color: #cfc4b6;
+}
+
+.dialogue .ghost {
+  visibility: hidden;
+}
+
+.dialogue .more {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  font-size: 14px;
+  color: var(--brass);
+  opacity: 0;
+}
+
+.dialogue .more.on {
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- title / end ---------- */
+
+.title-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 9vh 7vw;
+  background:
+    linear-gradient(to top, rgb(10 8 13 / 0.92), rgb(10 8 13 / 0.15) 55%, transparent),
+    linear-gradient(to right, rgb(10 8 13 / 0.7), transparent 60%);
+}
+
+.title-card.end {
+  background: rgb(10 8 13 / 0.82);
+}
+
+.title-kicker {
+  font-family: var(--font-display), monospace;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+}
+
+.title-card h1 {
+  font-family: var(--font-display), monospace;
+  font-weight: 700;
+  font-size: clamp(72px, 13vw, 168px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  text-shadow:
+    calc(var(--px) * 3) calc(var(--px) * 3) 0 var(--oxblood-dk),
+    calc(var(--px) * 6) calc(var(--px) * 6) 0 var(--ink-0);
+}
+
+.title-card h1.small {
+  font-size: clamp(40px, 7vw, 88px);
+  margin-top: 6px;
+}
+
+.title-sub {
+  font-size: clamp(28px, 3.2vw, 40px);
+  color: var(--brass-lt);
+  margin-top: 6px;
+}
+
+.title-blink {
+  margin-top: 28px;
+  font-family: var(--font-display), monospace;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper);
+  animation: blink 1.2s steps(1) infinite;
+}
+
+.title-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 18px;
+  font-size: 22px;
+  color: var(--paper-dim);
+}
+
+/* ---------- render toggles ---------- */
+
+.fx-panel {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  font-size: 18px;
+  line-height: 1;
+  color: #544c4c;
+}
+
+.fx-panel .on {
+  color: var(--paper-dim);
+}
+
+.fx-panel kbd {
+  font-size: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt-inner,
+  .dialogue .more.on,
+  .title-blink,
+  .toast {
+    animation: none;
+  }
+  .dialogue .more.on {
+    opacity: 1;
+  }
 }
