@@ -1,8 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "platformAutomerge": false,
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 5am"]
+    "automerge": false,
+    "schedule": [
+      "before 5am on monday"
+    ]
   }
 }
